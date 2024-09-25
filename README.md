@@ -4,5 +4,5 @@ for building use Atmel Studio 6.0
 
 <center class="half">
         <div style="background-color:#ffffff;">
-        <img src="/images/main.png" title="preview"/>
+        <img src="https://github.com/staticbear/attiny10_tetris/blob/main/images/main.jpg" title="preview"/>
 </center>
