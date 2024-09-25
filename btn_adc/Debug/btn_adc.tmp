@@ -1,0 +1,28 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.1.52</VERSION>
+ <DEVICE>"ATtiny10"</DEVICE>
+ <WORKING_DIR>D:\Attiny10_tetris\tetris_all\btn_adc\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:\Program Files (x86)\Atmel\Atmel Studio 6.0\extensions\Atmel\AVRAssembler\2.1.51.64\AvrAssembler/Include</DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>D:\Attiny10_tetris\tetris_all\btn_adc\btn_adc.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:\Program Files (x86)\Atmel\Atmel Studio 6.0\extensions\Atmel\AVRAssembler\2.1.51.64\AvrAssembler/Include\tn10def.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>D:\Attiny10_tetris\tetris_all\btn_adc\Debug/btn_adc.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>D:\Attiny10_tetris\tetris_all\btn_adc\Debug/btn_adc.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>D:\Attiny10_tetris\tetris_all\btn_adc\Debug\btn_adc.map</FILE>
+  <FILE>D:\Attiny10_tetris\tetris_all\btn_adc\Debug\btn_adc.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <_main><FILE>D:\Attiny10_tetris\tetris_all\btn_adc\btn_adc.asm</FILE><LINE>19</LINE></_main>
+  <_nxt><FILE>D:\Attiny10_tetris\tetris_all\btn_adc\btn_adc.asm</FILE><LINE>22</LINE></_nxt>
+  <_nxt_bit><FILE>D:\Attiny10_tetris\tetris_all\btn_adc\btn_adc.asm</FILE><LINE>29</LINE></_nxt_bit>
+  <_delay><FILE>D:\Attiny10_tetris\tetris_all\btn_adc\btn_adc.asm</FILE><LINE>43</LINE></_delay>
+ </LABELS>
+</ASSEMBLER_INFO>

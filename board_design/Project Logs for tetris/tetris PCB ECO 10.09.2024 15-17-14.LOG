@@ -1,0 +1,11 @@
+Removed Pin From Net: NetName=VCC Pin=P3-01
+Removed Pin From Net: NetName=GND Pin=P3-02
+Removed Pin From Net: NetName=BTN_ADC Pin=P3-03
+Removed Pin From Net: NetName=LCD_SCLK Pin=P3-04
+Removed Pin From Net: NetName=LCD_CS Pin=P3-05
+Added Pin To Net: NetName=LCD_CS Pin=P3-01
+Added Pin To Net: NetName=LCD_SCLK Pin=P3-02
+Added Pin To Net: NetName=GND Pin=P3-03
+Added Pin To Net: NetName=VCC Pin=P3-04
+Added Pin To Net: NetName=BTN_ADC Pin=P3-05
+Added Room: Name=tetris

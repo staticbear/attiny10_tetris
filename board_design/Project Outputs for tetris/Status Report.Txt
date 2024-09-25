@@ -1,0 +1,12 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [tetris.PrjPcb]
+   Generated File[tetris.TXT]
+   Generated File[tetris.LDP]
+   Generated File[tetris.DRR]
+
+
+Files Generated   : 3
+Documents Printed : 0
+
+Finished Output Generation At 1:05:39 On 12.09.2024

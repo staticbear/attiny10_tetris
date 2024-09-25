@@ -1,0 +1,5 @@
+Removed Pin From Net: NetName=NetP1_1 Pin=S5-1
+Added Pin To Net: NetName=NetP1_1 Pin=S5-3
+Added Member To Class: ClassName=tetris Member=Component P3 Reset
+Added Member To Class: ClassName=tetris Member=Component S2 black_left
+Added Room: Name=tetris

@@ -1,0 +1,30 @@
+Added Component: Designator=P2(61300711821)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Category"; Value = "Board-to-Board Connectors"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "Website Link"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "https://www.we-online.com/redexpert/article/61300711821?ad"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink2Description"; Value = "Datasheet Link"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink2URL"; Value = "https://www.we-online.com/redexpert/spec/61300711821?ad"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Contact Resistance"; Value = "20mOhm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Gender"; Value = "Socket Header"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "Wurth Elektronik"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer Part Number"; Value = "61300711821"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Match Code"; Value = "WR-PHD"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mount"; Value = "Through Hole"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Number of Pins"; Value = "7"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Number of Rows"; Value = "1"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Operating Temperature Max"; Value = "125°C"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Operating Temperature Min"; Value = "-40°C"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Orientation"; Value = "Vertical"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Packaging"; Value = "Tray"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Pitch"; Value = "2.54mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Rated Current"; Value = "3A"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Withstanding Voltage"; Value = "500V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Working Voltage"; Value = "250V"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=LCD_CS Pin=P2-1
+Added Pin To Net: NetName=VCC Pin=P2-3
+Added Pin To Net: NetName=LCD_SDIN Pin=P2-4
+Added Pin To Net: NetName=LCD_SCLK Pin=P2-5
+Added Pin To Net: NetName=VCC Pin=P2-6
+Added Pin To Net: NetName=GND Pin=P2-7
+Added Room: Name=tetris

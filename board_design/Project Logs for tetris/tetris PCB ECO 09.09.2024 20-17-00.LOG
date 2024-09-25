@@ -1,0 +1,193 @@
+Added Component: Designator=P1(HDR1X2)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Component: Designator=P2(TE_3-641212-7)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Availability"; Value = "Unavailable"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "3-641212-7"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=P3(SAMTEC_TSW-105-07-G-S)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Availability"; Value = "Unavailable"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "Samtec Inc."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "TSW-105-07-G-S"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=R1(AXIAL-0.4)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageDescription"; Value = "Axial Device, Thru-Hole; 2 Leads; 0.4 in Pin Spacing"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "AXIAL-0.4"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Published"; Value = "8-Jun-2000"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "1K"; VariantName = "[No Variations]"
+Added Component: Designator=R2(AXIAL-0.4)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageDescription"; Value = "Axial Device, Thru-Hole; 2 Leads; 0.4 in Pin Spacing"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "AXIAL-0.4"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Published"; Value = "8-Jun-2000"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "1K"; VariantName = "[No Variations]"
+Added Component: Designator=R3(AXIAL-0.4)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageDescription"; Value = "Axial Device, Thru-Hole; 2 Leads; 0.4 in Pin Spacing"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "AXIAL-0.4"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Published"; Value = "8-Jun-2000"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "1K"; VariantName = "[No Variations]"
+Added Component: Designator=R4(AXIAL-0.4)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageDescription"; Value = "Axial Device, Thru-Hole; 2 Leads; 0.4 in Pin Spacing"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "AXIAL-0.4"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Published"; Value = "8-Jun-2000"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "1K"; VariantName = "[No Variations]"
+Added Component: Designator=R5(AXIAL-0.4)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageDescription"; Value = "Axial Device, Thru-Hole; 2 Leads; 0.4 in Pin Spacing"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "AXIAL-0.4"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Published"; Value = "8-Jun-2000"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "1K"; VariantName = "[No Variations]"
+Added Component: Designator=S1(SW_1571627-1)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Availability"; Value = "In Stock"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/FSM103A/TE%20Connectivity%20ALCOSWITCH%20Switches/view-part/577644/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Comment_1"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "TE Connectivity"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "FSM103A"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Purchase-URL"; Value = "https://pricing.snapeda.com/search/part/FSM103A/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/FSM103A/TE%20Connectivity%20ALCOSWITCH%20Switches/view-part/577644/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=S2(SW_1571627-1)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Availability"; Value = "In Stock"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/FSM103A/TE%20Connectivity%20ALCOSWITCH%20Switches/view-part/577644/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Comment_1"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "TE Connectivity"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "FSM103A"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Purchase-URL"; Value = "https://pricing.snapeda.com/search/part/FSM103A/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/FSM103A/TE%20Connectivity%20ALCOSWITCH%20Switches/view-part/577644/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=S3(SW_1571627-1)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Availability"; Value = "In Stock"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/FSM103A/TE%20Connectivity%20ALCOSWITCH%20Switches/view-part/577644/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Comment_1"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "TE Connectivity"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "FSM103A"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Purchase-URL"; Value = "https://pricing.snapeda.com/search/part/FSM103A/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/FSM103A/TE%20Connectivity%20ALCOSWITCH%20Switches/view-part/577644/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=S4(SW_1571627-1)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Availability"; Value = "In Stock"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/FSM103A/TE%20Connectivity%20ALCOSWITCH%20Switches/view-part/577644/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Comment_1"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "TE Connectivity"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "FSM103A"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Purchase-URL"; Value = "https://pricing.snapeda.com/search/part/FSM103A/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/FSM103A/TE%20Connectivity%20ALCOSWITCH%20Switches/view-part/577644/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=S5(SW_EG1270)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Availability"; Value = "In Stock"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/EG1270/E-Switch/view-part/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "E-Switch"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "EG1270"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Purchase-URL"; Value = "https://pricing.snapeda.com/search/part/EG1270/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/EG1270/E-Switch/view-part/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=U1(SOT95P280X145-6N)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/ATTINY10-TSHR/Microchip/view-part/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "Microchip"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "ATTINY10-TSHR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "SOT-23-6 Microchip"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/ATTINY10-TSHR/Microchip/view-part/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Pin To Net: NetName=BTN_ADC Pin=P3-03
+Added Pin To Net: NetName=BTN_ADC Pin=R4-2
+Added Pin To Net: NetName=BTN_ADC Pin=R5-1
+Added Pin To Net: NetName=BTN_ADC Pin=U1-6
+Added Net: Name=BTN_ADC
+Added Pin To Net: NetName=GND Pin=P1-2
+Added Pin To Net: NetName=GND Pin=P2-7
+Added Pin To Net: NetName=GND Pin=P3-02
+Added Pin To Net: NetName=GND Pin=S1-3
+Added Pin To Net: NetName=GND Pin=S1-4
+Added Pin To Net: NetName=GND Pin=S2-3
+Added Pin To Net: NetName=GND Pin=S2-4
+Added Pin To Net: NetName=GND Pin=S3-3
+Added Pin To Net: NetName=GND Pin=S3-4
+Added Pin To Net: NetName=GND Pin=S4-3
+Added Pin To Net: NetName=GND Pin=S4-4
+Added Pin To Net: NetName=GND Pin=U1-2
+Added Net: Name=GND
+Added Pin To Net: NetName=LCD_CS Pin=P2-1
+Added Pin To Net: NetName=LCD_CS Pin=P3-05
+Added Pin To Net: NetName=LCD_CS Pin=U1-1
+Added Net: Name=LCD_CS
+Added Pin To Net: NetName=LCD_SCLK Pin=P2-5
+Added Pin To Net: NetName=LCD_SCLK Pin=P3-04
+Added Pin To Net: NetName=LCD_SCLK Pin=U1-3
+Added Net: Name=LCD_SCLK
+Added Pin To Net: NetName=LCD_SDIN Pin=P2-4
+Added Pin To Net: NetName=LCD_SDIN Pin=U1-4
+Added Net: Name=LCD_SDIN
+Added Pin To Net: NetName=NetP1_1 Pin=P1-1
+Added Pin To Net: NetName=NetP1_1 Pin=S5-1
+Added Net: Name=NetP1_1
+Added Pin To Net: NetName=NetR1_1 Pin=R1-1
+Added Pin To Net: NetName=NetR1_1 Pin=S4-1
+Added Pin To Net: NetName=NetR1_1 Pin=S4-2
+Added Net: Name=NetR1_1
+Added Pin To Net: NetName=NetR1_2 Pin=R1-2
+Added Pin To Net: NetName=NetR1_2 Pin=R2-1
+Added Pin To Net: NetName=NetR1_2 Pin=S2-1
+Added Pin To Net: NetName=NetR1_2 Pin=S2-2
+Added Net: Name=NetR1_2
+Added Pin To Net: NetName=NetR2_2 Pin=R2-2
+Added Pin To Net: NetName=NetR2_2 Pin=R3-1
+Added Pin To Net: NetName=NetR2_2 Pin=S3-1
+Added Pin To Net: NetName=NetR2_2 Pin=S3-2
+Added Net: Name=NetR2_2
+Added Pin To Net: NetName=NetR3_2 Pin=R3-2
+Added Pin To Net: NetName=NetR3_2 Pin=R4-1
+Added Pin To Net: NetName=NetR3_2 Pin=S1-1
+Added Pin To Net: NetName=NetR3_2 Pin=S1-2
+Added Net: Name=NetR3_2
+Added Pin To Net: NetName=VCC Pin=P2-3
+Added Pin To Net: NetName=VCC Pin=P2-6
+Added Pin To Net: NetName=VCC Pin=P3-01
+Added Pin To Net: NetName=VCC Pin=R5-2
+Added Pin To Net: NetName=VCC Pin=S5-2
+Added Pin To Net: NetName=VCC Pin=U1-5
+Added Net: Name=VCC
+Added Class: Name=tetris
+Added Room: Name=tetris

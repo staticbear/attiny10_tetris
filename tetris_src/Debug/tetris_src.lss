@@ -1,0 +1,1278 @@
+
+AVRASM ver. 2.1.52  D:\Attiny10_tetris\tetris_all\tetris_src\tetris.asm Thu Sep 26 00:54:44 2024
+
+[builtin](2): Including file 'C:\Program Files (x86)\Atmel\Atmel Studio 6.0\extensions\Atmel\AVRAssembler\2.1.51.64\AvrAssembler/Include\tn10def.inc'
+D:\Attiny10_tetris\tetris_all\tetris_src\tetris.asm(1): Including file 'C:\Program Files (x86)\Atmel\Atmel Studio 6.0\extensions\Atmel\AVRAssembler\2.1.51.64\AvrAssembler/Include\tn10def.inc'
+D:\Attiny10_tetris\tetris_all\tetris_src\tetris.asm(32): warning: Register r26 already defined by the .DEF directive
+D:\Attiny10_tetris\tetris_all\tetris_src\tetris.asm(33): warning: Register r27 already defined by the .DEF directive
+D:\Attiny10_tetris\tetris_all\tetris_src\tetris.asm(37): warning: Register r17 already defined by the .DEF directive
+D:\Attiny10_tetris\tetris_all\tetris_src\tetris.asm(43): warning: Register r16 already defined by the .DEF directive
+D:\Attiny10_tetris\tetris_all\tetris_src\tetris.asm(44): warning: Register r17 already defined by the .DEF directive
+D:\Attiny10_tetris\tetris_all\tetris_src\tetris.asm(53): warning: Register r16 already defined by the .DEF directive
+D:\Attiny10_tetris\tetris_all\tetris_src\tetris.asm(54): warning: Register r17 already defined by the .DEF directive
+D:\Attiny10_tetris\tetris_all\tetris_src\tetris.asm(55): warning: Register r18 already defined by the .DEF directive
+D:\Attiny10_tetris\tetris_all\tetris_src\tetris.asm(56): warning: Register r19 already defined by the .DEF directive
+D:\Attiny10_tetris\tetris_all\tetris_src\tetris.asm(60): warning: Register r24 already defined by the .DEF directive
+D:\Attiny10_tetris\tetris_all\tetris_src\tetris.asm(63): warning: Register r28 already defined by the .DEF directive
+D:\Attiny10_tetris\tetris_all\tetris_src\tetris.asm(64): warning: Register r30 already defined by the .DEF directive
+D:\Attiny10_tetris\tetris_all\tetris_src\tetris.asm(65): warning: Register r29 already defined by the .DEF directive
+D:\Attiny10_tetris\tetris_all\tetris_src\tetris.asm(66): warning: Register r31 already defined by the .DEF directive
+                 
+                 .include "tn10def.inc"
+                 
+                 ;***** Created: 2011-02-09 12:03 ******* Source: ATtiny10.xml ************
+                 ;*************************************************************************
+                 ;* A P P L I C A T I O N   N O T E   F O R   T H E   A V R   F A M I L Y
+                 ;* 
+                 ;* Number            : AVR000
+                 ;* File Name         : "tn10def.inc"
+                 ;* Title             : Register/Bit Definitions for the ATtiny10
+                 ;* Date              : 2011-02-09
+                 ;* Version           : 2.35
+                 ;* Support E-mail    : avr@atmel.com
+                 ;* Target MCU        : ATtiny10
+                 ;* 
+                 ;* DESCRIPTION
+                 ;* When including this file in the assembly program file, all I/O register 
+                 ;* names and I/O register bit names appearing in the data book can be used.
+                 ;* In addition, the six registers forming the three data pointers X, Y and 
+                 ;* Z have been assigned names XL - ZH. Highest RAM address for Internal 
+                 ;* SRAM is also defined 
+                 ;* 
+                 ;* The Register names are represented by their hexadecimal address.
+                 ;* 
+                 ;* The Register Bit names are represented by their bit number (0-7).
+                 ;* 
+                 ;* Please observe the difference in using the bit names with instructions
+                 ;* such as "sbr"/"cbr" (set/clear bit in register) and "sbrs"/"sbrc"
+                 ;* (skip if bit in register set/cleared). The following example illustrates
+                 ;* this:
+                 ;* 
+                 ;* in    r16,PORTB             ;read PORTB latch
+                 ;* sbr   r16,(1<<PB6)+(1<<PB5) ;set PB6 and PB5 (use masks, not bit#)
+                 ;* out   PORTB,r16             ;output to PORTB
+                 ;* 
+                 ;* in    r16,TIFR              ;read the Timer Interrupt Flag Register
+                 ;* sbrc  r16,TOV0              ;test the overflow flag (use bit#)
+                 ;* rjmp  TOV0_is_set           ;jump if set
+                 ;* ...                         ;otherwise do something else
+                 ;*************************************************************************
+                 
+                 #ifndef _TN10DEF_INC_
+                 #define _TN10DEF_INC_
+                 
+                 
+                 #pragma partinc 0
+                 
+                 ; ***** SPECIFY DEVICE ***************************************************
+                 .device ATtiny10
+                 #pragma AVRPART ADMIN PART_NAME ATtiny10
+                 .equ	SIGNATURE_000	= 0x1e
+                 .equ	SIGNATURE_001	= 0x90
+                 .equ	SIGNATURE_002	= 0x03
+                 
+                 #pragma AVRPART CORE CORE_VERSION AVR8L_0
+                 
+                 
+                 ; ***** I/O REGISTER DEFINITIONS *****************************************
+                 ; NOTE:
+                 ; Definitions marked "MEMORY MAPPED"are extended I/O ports
+                 ; and cannot be used with IN/OUT instructions
+                 .equ	SREG	= 0x3f
+                 .equ	SPL	= 0x3d
+                 .equ	SPH	= 0x3e
+                 .equ	CCP	= 0x3c
+                 .equ	RSTFLR	= 0x3b
+                 .equ	SMCR	= 0x3a
+                 .equ	OSCCAL	= 0x39
+                 .equ	CLKMSR	= 0x37
+                 .equ	CLKPSR	= 0x36
+                 .equ	PRR	= 0x35
+                 .equ	VLMCSR	= 0x34
+                 .equ	NVMCMD	= 0x33
+                 .equ	NVMCSR	= 0x32
+                 .equ	WDTCSR	= 0x31
+                 .equ	GTCCR	= 0x2f
+                 .equ	TCCR0A	= 0x2e
+                 .equ	TCCR0B	= 0x2d
+                 .equ	TCCR0C	= 0x2c
+                 .equ	TIMSK0	= 0x2b
+                 .equ	TIFR0	= 0x2a
+                 .equ	TCNT0L	= 0x28
+                 .equ	TCNT0H	= 0x29
+                 .equ	OCR0AL	= 0x26
+                 .equ	OCR0AH	= 0x27
+                 .equ	OCR0BL	= 0x24
+                 .equ	OCR0BH	= 0x25
+                 .equ	ICR0L	= 0x22
+                 .equ	ICR0H	= 0x23
+                 .equ	ACSR	= 0x1f
+                 .equ	ADCSRA	= 0x1d
+                 .equ	ADCSRB	= 0x1c
+                 .equ	ADMUX	= 0x1b
+                 .equ	ADCL	= 0x19
+                 .equ	DIDR0	= 0x17
+                 .equ	EICRA	= 0x15
+                 .equ	EIFR	= 0x14
+                 .equ	EIMSK	= 0x13
+                 .equ	PCICR	= 0x12
+                 .equ	PCIFR	= 0x11
+                 .equ	PCMSK	= 0x10
+                 .equ	PORTCR	= 0x0c
+                 .equ	PUEB	= 0x03
+                 .equ	PORTB	= 0x02
+                 .equ	DDRB	= 0x01
+                 .equ	PINB	= 0x00
+                 
+                 
+                 ; ***** BIT DEFINITIONS **************************************************
+                 
+                 ; ***** AD_CONVERTER *****************
+                 ; ADMUX - The ADC multiplexer Selection Register
+                 .equ	MUX0	= 0	; Analog Channel Selection Bits
+                 .equ	MUX1	= 1	; Analog Channel Selection Bits
+                 
+                 ; ADCSRA - The ADC Control and Status register A
+                 .equ	ADPS0	= 0	; ADC  Prescaler Select Bits
+                 .equ	ADPS1	= 1	; ADC  Prescaler Select Bits
+                 .equ	ADPS2	= 2	; ADC  Prescaler Select Bits
+                 .equ	ADIE	= 3	; ADC Interrupt Enable
+                 .equ	ADIF	= 4	; ADC Interrupt Flag
+                 .equ	ADATE	= 5	; ADC  Auto Trigger Enable
+                 .equ	ADSC	= 6	; ADC Start Conversion
+                 .equ	ADEN	= 7	; ADC Enable
+                 
+                 ; ADCSRB - The ADC Control and Status register B
+                 .equ	ADTS0	= 0	; ADC Auto Trigger Source bit 0
+                 .equ	ADTS1	= 1	; ADC Auto Trigger Source bit 1
+                 .equ	ADTS2	= 2	; ADC Auto Trigger Source bit 2
+                 
+                 ; ADCL - ADC Data Register
+                 .equ	ADC0	= 0	; ADC Data Register Bit 0
+                 .equ	ADC1	= 1	; ADC Data Register Bit 1
+                 .equ	ADC2	= 2	; ADC Data Register Bit 2
+                 .equ	ADC3	= 3	; ADC Data Register Bit 3
+                 .equ	ADC4	= 4	; ADC Data Register Bit 4
+                 .equ	ADC5	= 5	; ADC Data Register Bit 5
+                 .equ	ADC6	= 6	; ADC Data Register Bit 6
+                 .equ	ADC7	= 7	; ADC Data Register Bit 7
+                 
+                 ; DIDR0 - Digital Input Disable Register
+                 .equ	ADC0D	= 0	; 
+                 .equ	ADC1D	= 1	; 
+                 .equ	ADC2D	= 2	; 
+                 .equ	ADC3D	= 3	; 
+                 
+                 
+                 ; ***** ANALOG_COMPARATOR ************
+                 ; ACSR - Analog Comparator Control And Status Register
+                 .equ	ACIS0	= 0	; Analog Comparator Interrupt Mode Select bit 0
+                 .equ	ACIS1	= 1	; Analog Comparator Interrupt Mode Select bit 1
+                 .equ	ACIC	= 2	; Analog Comparator Input Capture  Enable
+                 .equ	ACIE	= 3	; Analog Comparator Interrupt Enable
+                 .equ	ACI	= 4	; Analog Comparator Interrupt Flag
+                 .equ	ACO	= 5	; Analog Compare Output
+                 .equ	ACD	= 7	; Analog Comparator Disable
+                 
+                 ; DIDR0 - 
+                 .equ	AIN0D	= 0	; AIN0 Digital Input Disable
+                 .equ	AIN1D	= 1	; AIN1 Digital Input Disable
+                 
+                 
+                 ; ***** CPU **************************
+                 ; CCP - Configuration Change Protection
+                 .equ	CCP0	= 0	; Configuration Change Protection bit 0
+                 .equ	CCP1	= 1	; Configuration Change Protection bit 1
+                 .equ	CCP2	= 2	; Configuration Change Protection bit 2
+                 .equ	CCP3	= 3	; Configuration Change Protection bit 3
+                 .equ	CCP4	= 4	; Configuration Change Protection bit 4
+                 .equ	CCP5	= 5	; Configuration Change Protection bit 5
+                 .equ	CCP6	= 6	; Configuration Change Protection bit 6
+                 .equ	CCP7	= 7	; Configuration Change Protection bit 7
+                 
+                 ; SREG - Status Register
+                 .equ	SREG_C	= 0	; Carry Flag
+                 .equ	SREG_Z	= 1	; Zero Flag
+                 .equ	SREG_N	= 2	; Negative Flag
+                 .equ	SREG_V	= 3	; Two's Complement Overflow Flag
+                 .equ	SREG_S	= 4	; Sign Bit
+                 .equ	SREG_H	= 5	; Half Carry Flag
+                 .equ	SREG_T	= 6	; Bit Copy Storage
+                 .equ	SREG_I	= 7	; Global Interrupt Enable
+                 
+                 ; CLKMSR - Clock Main Settings Register
+                 .equ	CLKMS0	= 0	; Clock Main Select Bit 0
+                 .equ	CLKMS1	= 1	; Clock Main Select Bit 1
+                 
+                 ; CLKPSR - Clock Prescale Register
+                 .equ	CLKPS0	= 0	; Clock Prescaler Select Bit 0
+                 .equ	CLKPS1	= 1	; Clock Prescaler Select Bit 1
+                 .equ	CLKPS2	= 2	; Clock Prescaler Select Bit 2
+                 .equ	CLKPS3	= 3	; Clock Prescaler Select Bit 3
+                 
+                 ; OSCCAL - Oscillator Calibration Value
+                 .equ	CAL0	= 0	; Oscillator Calibration Value Bit0
+                 .equ	CAL1	= 1	; Oscillator Calibration Value Bit1
+                 .equ	CAL2	= 2	; Oscillator Calibration Value Bit2
+                 .equ	CAL3	= 3	; Oscillator Calibration Value Bit3
+                 .equ	CAL4	= 4	; Oscillator Calibration Value Bit4
+                 .equ	CAL5	= 5	; Oscillator Calibration Value Bit5
+                 .equ	CAL6	= 6	; Oscillator Calibration Value Bit6
+                 .equ	CAL7	= 7	; Oscillator Calibration Value Bit7
+                 
+                 ; SMCR - Sleep Mode Control Register
+                 .equ	SE	= 0	; Sleep Enable
+                 .equ	SM0	= 1	; Sleep Mode Select Bit 0
+                 .equ	SM1	= 2	; Sleep Mode Select Bit 1
+                 .equ	SM2	= 3	; Sleep Mode Select Bit 2
+                 
+                 ; PRR - Power Reduction Register
+                 .equ	PRTIM0	= 0	; Power Reduction Timer/Counter0
+                 .equ	PRADC	= 1	; Power Reduction ADC
+                 
+                 ; VLMCSR - Vcc Level Monitoring Control and Status Register
+                 .equ	VLM0	= 0	; Trigger Level of Voltage Level Monitor bit 0
+                 .equ	VLM1	= 1	; Trigger Level of Voltage Level Monitor bit 1
+                 .equ	VLM2	= 2	; Trigger Level of Voltage Level Monitor bit 2
+                 .equ	VLMIE	= 6	; VLM Interrupt Enable
+                 .equ	VLMF	= 7	; VLM Flag
+                 
+                 ; RSTFLR - Reset Flag Register
+                 .equ	PORF	= 0	; Power-on Reset Flag
+                 .equ	EXTRF	= 1	; External Reset Flag
+                 .equ	WDRF	= 3	; Watchdog Reset Flag
+                 
+                 ; NVMCSR - Non-Volatile Memory Control and Status Register
+                 .equ	NVMBSY	= 7	; Non-Volatile Memory Busy
+                 
+                 ; NVMCMD - Non-Volatile Memory Command
+                 .equ	NVMCMD0	= 0	; 
+                 .equ	NVMCMD1	= 1	; 
+                 .equ	NVMCMD2	= 2	; 
+                 .equ	NVMCMD3	= 3	; 
+                 .equ	NVMCMD4	= 4	; 
+                 .equ	NVMCMD5	= 5	; 
+                 
+                 
+                 ; ***** PORTB ************************
+                 ; PORTCR - Port Control Register
+                 .equ	BBMB	= 1	; Break-Before-Make Mode Enable
+                 
+                 ; PUEB - Pull-up Enable Control Register
+                 .equ	PUEB0	= 0	; 
+                 .equ	PUEB1	= 1	; 
+                 .equ	PUEB2	= 2	; 
+                 .equ	PUEB3	= 3	; 
+                 
+                 ; PORTB - Input Pins, Port B
+                 .equ	PORTB0	= 0	; 
+                 .equ	PB0	= 0	; For compatibility
+                 .equ	PORTB1	= 1	; 
+                 .equ	PB1	= 1	; For compatibility
+                 .equ	PORTB2	= 2	; 
+                 .equ	PB2	= 2	; For compatibility
+                 .equ	PORTB3	= 3	; 
+                 .equ	PB3	= 3	; For compatibility
+                 
+                 ; DDRB - Data Direction Register, Port B
+                 .equ	DDB0	= 0	; 
+                 .equ	DDB1	= 1	; 
+                 .equ	DDB2	= 2	; 
+                 .equ	DDB3	= 3	; 
+                 
+                 ; PINB - Port B Data register
+                 .equ	PINB0	= 0	; 
+                 .equ	PINB1	= 1	; 
+                 .equ	PINB2	= 2	; 
+                 .equ	PINB3	= 3	; 
+                 
+                 
+                 ; ***** EXTERNAL_INTERRUPT ***********
+                 ; EICRA - External Interrupt Control Register A
+                 .equ	ISC00	= 0	; Interrupt Sense Control 0 Bit 0
+                 .equ	ISC01	= 1	; Interrupt Sense Control 0 Bit 1
+                 
+                 ; EIMSK - External Interrupt Mask register
+                 .equ	INT0	= 0	; External Interrupt Request 0 Enable
+                 
+                 ; EIFR - External Interrupt Flag register
+                 .equ	INTF0	= 0	; External Interrupt Flag 0
+                 
+                 ; PCICR - Pin Change Interrupt Control Register
+                 .equ	PCIE0	= 0	; Pin Change Interrupt Enable 0
+                 
+                 ; PCIFR - Pin Change Interrupt Flag Register
+                 .equ	PCIF0	= 0	; Pin Change Interrupt Flag 0
+                 
+                 ; PCMSK - Pin Change Mask Register
+                 .equ	PCINT0	= 0	; Pin Change Enable Mask 0
+                 .equ	PCINT1	= 1	; Pin Change Enable Mask 1
+                 .equ	PCINT2	= 2	; Pin Change Enable Mask 2
+                 .equ	PCINT3	= 3	; Pin Change Enable Mask 3
+                 
+                 
+                 ; ***** TIMER_COUNTER_0 **************
+                 ; TCCR0A - Timer/Counter 0 Control Register A
+                 .equ	WGM00	= 0	; Waveform Generation Mode
+                 .equ	WGM01	= 1	; Waveform Generation Mode
+                 .equ	COM0B0	= 4	; Compare Output Mode for Channel B bit 0
+                 .equ	COM0B1	= 5	; Compare Output Mode for Channel B bit 1
+                 .equ	COM0A0	= 6	; Compare Output Mode for Channel A bit 0
+                 .equ	COM0A1	= 7	; Compare Output Mode for Channel A bit 1
+                 
+                 ; TCCR0B - Timer/Counter 0 Control Register B
+                 .equ	CS00	= 0	; Clock Select
+                 .equ	CS01	= 1	; Clock Select
+                 .equ	CS02	= 2	; Clock Select
+                 .equ	WGM02	= 3	; Waveform Generation Mode
+                 .equ	WGM03	= 4	; Waveform Generation Mode
+                 .equ	ICES0	= 6	; Input Capture Edge Select
+                 .equ	ICNC0	= 7	; Input Capture Noise Canceler
+                 
+                 ; TCCR0C - Timer/Counter 0 Control Register C
+                 .equ	FOC0B	= 6	; Force Output Compare for Channel B
+                 .equ	FOC0A	= 7	; Force Output Compare for Channel A
+                 
+                 ; TIMSK0 - Timer Interrupt Mask Register 0
+                 .equ	TOIE0	= 0	; Overflow Interrupt Enable
+                 .equ	OCIE0A	= 1	; Output Compare A Match Interrupt Enable
+                 .equ	OCIE0B	= 2	; Output Compare B Match Interrupt Enable
+                 .equ	ICIE0	= 5	; Input Capture Interrupt Enable
+                 
+                 ; TIFR0 - Overflow Interrupt Enable
+                 .equ	TOV0	= 0	; Timer Overflow Flag
+                 .equ	OCF0A	= 1	; Timer Output Compare Flag 0A
+                 .equ	OCF0B	= 2	; Timer Output Compare Flag 0B
+                 .equ	ICF0	= 5	; Input Capture Flag
+                 
+                 ; GTCCR - General Timer/Counter Control Register
+                 .equ	PSR	= 0	; Prescaler Reset
+                 .equ	TSM	= 7	; Timer Synchronization Mode
+                 
+                 
+                 ; ***** WATCHDOG *********************
+                 ; WDTCSR - Watchdog Timer Control and Status Register
+                 .equ	WDP0	= 0	; Watch Dog Timer Prescaler bit 0
+                 .equ	WDP1	= 1	; Watch Dog Timer Prescaler bit 1
+                 .equ	WDP2	= 2	; Watch Dog Timer Prescaler bit 2
+                 .equ	WDE	= 3	; Watch Dog Enable
+                 .equ	WDP3	= 5	; Watchdog Timer Prescaler Bit 3
+                 .equ	WDIE	= 6	; Watchdog Timer Interrupt Enable
+                 .equ	WDIF	= 7	; Watchdog Timer Interrupt Flag
+                 
+                 
+                 
+                 ; ***** LOCKSBITS ********************************************************
+                 .equ	LB1	= 0	; Lockbit
+                 .equ	LB2	= 1	; Lockbit
+                 
+                 
+                 ; ***** FUSES ************************************************************
+                 ; BYTE0 fuse bits
+                 .equ	RSTDISBL	= 0	; Disable external reset
+                 .equ	WDTON	= 1	; Watch dog timer always on
+                 .equ	CKOUT	= 2	; Output external clock
+                 
+                 
+                 
+                 ; ***** CPU REGISTER DEFINITIONS *****************************************
+                 .def	XH	= r27
+                 .def	XL	= r26
+                 .def	YH	= r29
+                 .def	YL	= r28
+                 .def	ZH	= r31
+                 .def	ZL	= r30
+                 
+                 
+                 
+                 ; ***** DATA MEMORY DECLARATIONS *****************************************
+                 .equ	FLASHEND	= 0x01ff	; Note: Word address
+                 .equ	IOEND	= 0x003f
+                 .equ	SRAM_START	= 0x0040
+                 .equ	SRAM_SIZE	= 32
+                 .equ	RAMEND	= 0x005f
+                 .equ	XRAMEND	= 0x0000
+                 .equ	E2END	= 0x0000
+                 .equ	EEPROMEND	= 0x0000
+                 
+                 ; ***** MEMORY MAPPED NVM ************************************************
+                 .equ	MAPPED_FLASH_START	= 0x4000
+                 .equ	MAPPED_LOCKBITS_0	= 0x3f00
+                 .equ	MAPPED_CONFIG_0	= 0x3f40
+                 .equ	MAPPED_CALIB_0	= 0x3f80
+                 .equ	MAPPED_SIGN_0	= 0x3fc0
+                 .equ	MAPPED_SIGN_1	= 0x3fc1
+                 .equ	MAPPED_SIGN_2	= 0x3fc2
+                 .equ	MAPPED_FLASH_SIZE	= 0x0400
+                 .equ	MAPPED_FLASH_END	= 0x43ff
+                 #pragma AVRPART MEMORY PROG_FLASH 1024
+                 #pragma AVRPART MEMORY EEPROM 0
+                 #pragma AVRPART MEMORY INT_SRAM SIZE 32
+                 #pragma AVRPART MEMORY INT_SRAM START_ADDR 0x40
+                 
+                 
+                 
+                 ; ***** BOOTLOADER DECLARATIONS ******************************************
+                 .equ	PAGESIZE	= 16
+                 
+                 
+                 
+                 ; ***** INTERRUPT VECTORS ************************************************
+                 .equ	INT0addr	= 0x0001	; External Interrupt Request 0
+                 .equ	PCI0addr	= 0x0002	; Pin Change Interrupt Request 0
+                 .equ	ICP0addr	= 0x0003	; Timer/Counter0 Input Capture
+                 .equ	OVF0addr	= 0x0004	; Timer/Counter0 Overflow
+                 .equ	OC0Aaddr	= 0x0005	; Timer/Counter Compare Match A
+                 .equ	OC0Baddr	= 0x0006	; Timer/Counter Compare Match B
+                 .equ	ACIaddr	= 0x0007	; Analog Comparator
+                 .equ	WDTaddr	= 0x0008	; Watchdog Time-out
+                 .equ	VLMaddr	= 0x0009	; Vcc Voltage Level Monitor
+                 .equ	ADCCaddr	= 0x000a	; ADC Conversion Complete
+                 
+                 .equ	INT_VECTORS_SIZE	= 11	; size in words
+                 
+                 #pragma AVRPART CORE INSTRUCTIONS_NOT_SUPPORTED break
+                 
+                 #endif  /* _TN10DEF_INC_ */
+                 
+                 ; ***** END OF FILE ******************************************************
+                 
+                 
+                 ;***** Created: 2011-02-09 12:03 ******* Source: ATtiny10.xml ************
+                 ;*************************************************************************
+                 ;* A P P L I C A T I O N   N O T E   F O R   T H E   A V R   F A M I L Y
+                 ;* 
+                 ;* Number            : AVR000
+                 ;* File Name         : "tn10def.inc"
+                 ;* Title             : Register/Bit Definitions for the ATtiny10
+                 ;* Date              : 2011-02-09
+                 ;* Version           : 2.35
+                 ;* Support E-mail    : avr@atmel.com
+                 ;* Target MCU        : ATtiny10
+                 ;* 
+                 ;* DESCRIPTION
+                 ;* When including this file in the assembly program file, all I/O register 
+                 ;* names and I/O register bit names appearing in the data book can be used.
+                 ;* In addition, the six registers forming the three data pointers X, Y and 
+                 ;* Z have been assigned names XL - ZH. Highest RAM address for Internal 
+                 ;* SRAM is also defined 
+                 ;* 
+                 ;* The Register names are represented by their hexadecimal address.
+                 ;* 
+                 ;* The Register Bit names are represented by their bit number (0-7).
+                 ;* 
+                 ;* Please observe the difference in using the bit names with instructions
+                 ;* such as "sbr"/"cbr" (set/clear bit in register) and "sbrs"/"sbrc"
+                 ;* (skip if bit in register set/cleared). The following example illustrates
+                 ;* this:
+                 ;* 
+                 ;* in    r16,PORTB             ;read PORTB latch
+                 ;* sbr   r16,(1<<PB6)+(1<<PB5) ;set PB6 and PB5 (use masks, not bit#)
+                 ;* out   PORTB,r16             ;output to PORTB
+                 ;* 
+                 ;* in    r16,TIFR              ;read the Timer Interrupt Flag Register
+                 ;* sbrc  r16,TOV0              ;test the overflow flag (use bit#)
+                 ;* rjmp  TOV0_is_set           ;jump if set
+                 ;* ...                         ;otherwise do something else
+                 ;*************************************************************************
+                 
+                 #ifndef _TN10DEF_INC_
+                 #endif  /* _TN10DEF_INC_ */
+                 
+                 ; ***** END OF FILE ******************************************************
+                 .equ	LCD_CS		 = PINB0
+                 .equ	LCD_SCLK	 = PINB1
+                 .equ	LCD_SDIN	 = PINB2
+                 
+                 .equ	TFIELD_LOW	 = 0x40
+                 .equ	TFIELD_HIGH  = 0x00
+                 
+                 .equ	BTN_DOWN	 = 0x00
+                 .equ	BTN_UP		 = 0x01
+                 .equ	BTN_LEFT	 = 0x02
+                 .equ	BTN_RIGH	 = 0x03	
+                 
+                 .equ	BTN_UP_CODE		 = (1 << 7) | (0 << 6) | (0 << 5) | (0 << 4) | (0 << 3)	// blue
+                 .equ	BTN_DOWN_CODE	 = (1 << 7) | (1 << 6) | (0 << 5) | (0 << 4) | (1 << 3)	// black
+                 .equ	BTN_LEFT_CODE	 = (1 << 7) | (0 << 6) | (1 << 5) | (0 << 4) | (1 << 3)	// red
+                 .equ	BTN_RIGH_CODE	 = (1 << 7) | (1 << 6) | (0 << 5) | (0 << 4) | (0 << 3)	// white
+                 
+                 .equ	DELAY_1S		 = 10
+                 .equ	DELAY_09S		 = 9
+                 .equ	DELAY_08S		 = 8
+                 .equ	DELAY_07S		 = 7
+                 .equ	DELAY_06S		 = 6
+                 .equ	DELAY_05S		 = 5
+                 .equ	DELAY_04S		 = 4
+                 
+                 // common local
+                 .def	t_field_x		= R17
+                 .def	t_field_y		= R18
+                 
+                 .def	t_field_byte	= R25
+                 .def	t_field_addr_l	= R26
+                 .def	t_field_addr_h	= R27
+                 
+                 // CheckLine local
+                 .def	t_line			= R16
+                 .def	t_byte_tmp		= R17
+                 
+                 // ShowIntro local	
+                 .def	val_j			= R19
+                 
+                 // SendLcd8Bit local
+                 .def	arg0			= R16
+                 .def	val_i			= R17
+                 
+                 // BrickControl global
+                 .def	brick_x			= R20
+                 .def	brick_y			= R21
+                 .def	brick_type		= R22
+                 .def	brick_rot		= R23
+                 
+                 // BrickControl local
+                 .def	brick_pattern	= R16
+                 .def	tmp_x			= R17
+                 .def	tmp_y			= R18
+                 .def	tmp_pattern		= R19
+                 .def	tmp_patt_pos	= R24
+                 
+                 // LcdPrintField local
+                 .def	lcd_addr_cnt	= R24
+                 
+                 // main global
+                 .def	t_result		= R28
+                 .def	btn_wait		= R30
+                 .def	drop_delay		= R29
+                 .def	brick_nxt		= R31
+                 
+                 /*
+                  PB1 - DISPLAY CS
+                  PB2 - DISPLAY SCLK
+                  PB3 - DISPLAY SDIN
+                 */
+                 .cseg
+                 .org 	0x00
+000000 c016      	rjmp	_init
+                 
+000001 3fa8
+000002 00d3
+000003 a040
+000004 dac0
+000005 a412      data_lcd_init_codes: .db 0xA8, 0x3F, 0xD3, 0x00, 0x40, 0xA0, 0xC0, 0xDA, 0x12, 0xA4, 0xA6, \
+000006 d5a6
+000007 8d80
+000008 af14
+000009 0020
+00000a 00e3      						 0xD5, 0x80, 0x8D, 0x14, 0xAF, 0x20, 0x00, 0xE3, 0x00
+                 
+00000b 9060
+00000c c050      brick_type_0_0:	.db 0x60, 0x90, 0x50, 0xC0
+00000d 94e0
+00000e 2907      brick_type_1_0:	.db 0xE0, 0x94, 0x07, 0x29
+00000f c238
+000010 431c      brick_type_2_0:	.db 0x38, 0xC2, 0x1C, 0x43
+000011 4698
+000012 6219      brick_type_3_0:	.db 0x98, 0x46, 0x19, 0x62
+000013 9270
+000014 9270      brick_type_4_0:	.db 0x70, 0x92, 0x70, 0x92
+000015 2ac8
+000016 2ac8      brick_type_5_0:	.db 0xC8, 0x2A, 0xC8, 0x2A
+                 
+                 _init:
+000017 9aff      	sbi		ACSR, ACD							// disable comparator
+                 //-----------------init timer-----------------------
+000018 2700      	clr		R16									// TCCR0A, TCCR0C =   0
+000019 bd0e      	out		TCCR0A, R16	
+00001a bd0c      	out		TCCR0C, R16	
+00001b e207      	ldi		R16, 0x27
+00001c bd07      	out		OCR0AH, R16
+00001d e00f      	ldi		R16, 0x0F
+00001e bd06      	out		OCR0AL, R16	
+00001f e00a      	ldi		R16, (1 << WGM02) | (1 << CS01);	// WG - 0100 CTC, CS - 100 clk/8 - 8000000 / 8 = 1000000
+000020 bd0d      	out		TCCR0B, R16
+                 
+                 //-----------------init lcd display-----------------
+000021 e007      	ldi		R16, (1 << LCD_SDIN) | (1 << LCD_SCLK) | (1 << LCD_CS)
+000022 b901      	out		DDRB, R16
+000023 9a10      	sbi		PORTB, LCD_CS				 // DISPLAY CS set high
+000024 e0a2      	ldi		XL,	data_lcd_init_codes * 2  // initialize X pointer
+000025 e4b0      	ldi		XH,	0x40
+                 _nxt_cfg_byte:
+000026 910d      	ld		arg0, X+
+000027 9488      	clc
+000028 d18b      	rcall   SendLcd8Bit
+000029 3e03      	cpi		arg0, 0xE3			
+00002a f7d9      	brne	_nxt_cfg_byte
+                 
+                 //-----------------init adc-----------------------
+00002b e003      	ldi		R16, 3
+00002c bb0b      	out		ADMUX, R16	// ADC3 PB3
+00002d 2700      	clr		R16
+00002e bb0c      	out		ADCSRB, R16 // free run
+00002f e804      	ldi		R16, (1 << ADEN) | (1 << ADPS2)
+000030 bb0d      	out		ADCSRA, R16
+                 
+000031 e0f5      	ldi		brick_nxt, 5 
+                 _press_wt:
+000032 d069      	rcall	ShowIntro
+000033 d0a6      	rcall	Delay100us
+000034 d096      	rcall	PollButtons
+000035 23ee      	tst		btn_wait
+000036 f3d9      	breq	_press_wt
+                 
+000037 e4a0      	ldi		t_field_addr_l, TFIELD_LOW
+000038 e0b0      	ldi		t_field_addr_h, TFIELD_HIGH
+000039 e000      	ldi		R16, 0x00 
+                 _nxt_byte_field:
+00003a 930d      	st		X+, R16
+00003b 35a0      	cpi		t_field_addr_l, TFIELD_LOW + 16
+00003c f7e9      	brne	_nxt_byte_field
+00003d e0c0      	ldi		t_result, 0
+00003e e0e0      	ldi		btn_wait, 0
+00003f e0d7      	ldi		drop_delay, DELAY_07S
+                 
+                 _new_brick:
+000040 e0e0      	ldi		btn_wait, 0
+000041 e044      	ldi		brick_x, 04
+000042 e051      	ldi		brick_y, (1 << 0)
+000043 e070      	ldi		brick_rot, 0
+000044 2f6f      	mov		brick_type, brick_nxt
+000045 9468      	set
+000046 d0f0      	rcall	BrickControl
+000047 f350      	brcs	_press_wt
+                 	
+                 _main:
+000048 94e8      	clt
+000049 23ee      	tst		btn_wait
+00004a f1f9      	breq	_btn_none
+00004b d0eb      	rcall	BrickControl
+00004c 9468      	set
+                 _btn_up:
+00004d ffe1      	sbrs	btn_wait, BTN_UP
+00004e c00c      	rjmp	_btn_left
+00004f 7fed      	andi	btn_wait, ~(1 << BTN_UP)
+                 	// handle button up
+000050 3073      	cpi		brick_rot, 3
+000051 f409      	brne	_up_rot_0
+000052 ef7f      	ser		brick_rot
+                 _up_rot_0:
+000053 9573      	inc		brick_rot
+000054 d0e2      	rcall	BrickControl
+000055 f790      	brcc	_main
+000056 957a      	dec		brick_rot
+000057 fd77      	sbrc	brick_rot, 7
+000058 2777      	clr		brick_rot
+000059 d0dd      	rcall	BrickControl
+00005a cfed      	rjmp	_main
+                 _btn_left:
+00005b ffe2      	sbrs	btn_wait, BTN_LEFT
+00005c c00b      	rjmp	_btn_right
+00005d 7feb      	andi	btn_wait, ~(1 << BTN_LEFT)
+                 	// handle button left
+00005e 3047      	cpi		brick_x, 7
+00005f fd43      	sbrc	brick_x, 3
+000060 304f      	cpi		brick_x, 15
+000061 f021      	breq	_r_l_restore
+000062 9543      	inc		brick_x
+000063 d0d3      	rcall	BrickControl
+000064 f718      	brcc	_main
+000065 954a      	dec		brick_x
+                 _r_l_restore:
+000066 d0d0      	rcall	BrickControl
+000067 cfe0      	rjmp	_main
+                 _btn_right:
+000068 ffe3      	sbrs	btn_wait, BTN_RIGH
+000069 c00b      	rjmp	_btn_down
+00006a 7fe7      	andi	btn_wait, ~(1 << BTN_RIGH)
+                 	// handle button right
+00006b 3040      	cpi		brick_x, 0
+00006c fd43      	sbrc	brick_x, 3
+00006d 3048      	cpi		brick_x, 8
+00006e f3b9      	breq	_r_l_restore
+00006f 954a      	dec		brick_x
+000070 d0c6      	rcall	BrickControl
+000071 f6b0      	brcc	_main
+000072 9543      	inc		brick_x
+000073 d0c3      	rcall	BrickControl
+000074 cfd3      	rjmp	_main
+                 _btn_down:
+000075 ffe0      	sbrs	btn_wait, BTN_DOWN
+000076 c013      	rjmp	_btn_none
+000077 7fee      	andi	btn_wait, ~(1 << BTN_DOWN)
+                 	// handle button down
+000078 0f55      	lsl		brick_y
+000079 f421      	brne	_down_8_15_p
+00007a fd43      	sbrc	brick_x, 3
+00007b f039      	breq	_x_zero
+00007c 6048      	ori		brick_x, (1 << 3)	// brick_x + 8
+00007d 6051      	ori		brick_y, 1
+                 _down_8_15_p:
+00007e d0b8      	rcall	BrickControl		// set new brick
+00007f f450      	brcc	_btn_none
+000080 9556      	lsr		brick_y
+000081 f411      	brne	_down_8_15_m
+000082 7047      	andi	brick_x, 7			// brick_x - 8
+                 _x_zero:
+000083 6850      	ori		brick_y, (1 << 7)
+                 _down_8_15_m:
+000084 d0b2      	rcall	BrickControl		// set last brick
+                 _seek_full_line:
+000085 d061      	rcall	CheckLine
+000086 95c3      	inc		t_result
+000087 f3e8      	brcs	_seek_full_line
+000088 95ca      	dec		t_result
+000089 cfb6      	rjmp	_new_brick
+                 
+                 _btn_none:
+00008a d107      	rcall	LcdPrintField
+                 
+00008b d03f      	rcall	PollButtons
+                 
+00008c d04d      	rcall	Delay100us
+00008d 95da      	dec		drop_delay
+00008e f461      	brne	_sel_done
+00008f 60e1      	ori		btn_wait, (1 << BTN_DOWN)
+                 
+000090 e0d7      	ldi		drop_delay, DELAY_07S				// result from 0 to 15: delay 0.7 sec
+000091 31c0      	cpi		t_result, 16
+000092 f040      	brlo	_sel_done
+000093 e0d6      	ldi		drop_delay, DELAY_06S				// result from 16 to 31: delay 0.6 sec
+000094 32c0      	cpi		t_result, 32
+000095 f028      	brlo	_sel_done
+000096 e0d5      	ldi		drop_delay, DELAY_05S				// result from 32 to 63: delay 0.5 sec
+000097 34c0      	cpi		t_result, 64
+000098 f010      	brlo	_sel_done
+000099 e4c0      	ldi		t_result, 64
+00009a e0d4      	ldi		drop_delay, DELAY_04S				// result from 64 and above: delay 0.4 sec
+                 _sel_done:
+00009b cfac      	rjmp    _main
+                 
+                 		
+                 
+                 
+                 /*------------------------------------------------------------------------------------*/
+                 /*
+                 input:
+                 		none
+                 output:
+                 		none
+                 */
+                 ShowIntro:
+00009c 30d7      	cpi		drop_delay, 7
+00009d f0a0      	brlo	_si_delay
+                 
+00009e 2733      	clr		val_j
+                 _si_nxt_bt:
+00009f e6a8      	ldi		XL,	LOW(logo_arrow * 2)
+0000a0 e4b1      	ldi		XH,	HIGH(logo_arrow * 2) | 0x40
+0000a1 f40e      	brtc	_si_tc
+0000a2 e7a8      	ldi		XL,	LOW(logo_push * 2)
+                 _si_tc:
+0000a3 0fa3      	add		XL, val_j
+0000a4 910c      	ld		arg0, X
+0000a5 e4a0      	ldi		XL,	TFIELD_LOW
+0000a6 e0b0      	ldi		XH,	TFIELD_HIGH
+0000a7 0fa3      	add		XL, val_j
+0000a8 930c      	st		X, arg0
+0000a9 9533      	inc		val_j
+0000aa 3130      	cpi		val_j, 16
+0000ab f799      	brne	_si_nxt_bt
+                 
+0000ac d0e5      	rcall	LcdPrintField
+                 
+                 	//invert	SREG.T
+0000ad b70f      	in		arg0, SREG
+0000ae 9468      	set
+0000af fd06      	sbrc	arg0, 6
+0000b0 94e8      	clt
+0000b1 efdf      	ser		drop_delay
+                 _si_delay:
+0000b2 95d3      	inc		drop_delay
+0000b3 9508      	ret
+                 
+0000b4 0000
+0000b5 fcfc
+0000b6 fcfc      logo_arrow:	.db 0x00, 0x00, 0xFC, 0xFC, 0xFC, 0xFC, 0x00, 0x00, \
+0000b7 0000
+0000b8 0c04
+0000b9 3f1f
+0000ba 1f3f
+0000bb 040c      			    0x04, 0x0C, 0x1F, 0x3F, 0x3F, 0x1F, 0x0C, 0x04
+                 
+0000bc 203e
+0000bd 003e
+0000be 0e00      logo_push:  .db 0x3E, 0x20, 0x3E, 0x00, 0x00, 0x0E, 0x0A, 0x3E, \
+0000bf 3e0a
+0000c0 041f
+0000c1 001f
+0000c2 1d00
+0000c3 1715      				0x1F, 0x04, 0x1F, 0x00, 0x00, 0x1D, 0x15, 0x17
+                 /*------------------------------------------------------------------------------------*/
+                 /*
+                 input:
+                 		none
+                 output:
+                 		arg0 adc val
+                 */
+                 GetAdcVal:
+0000c4 ec04      	ldi		R16, (1 << ADEN) | (1 << ADPS2)	| (1 << ADSC)	
+0000c5 bb0d      	out		ADCSRA, R16
+                 _gav_nxt:
+0000c6 b30d      	in		R16, ADCSRA
+0000c7 7400      	andi	R16, (1 << ADSC)
+0000c8 f7e9      	brne	_gav_nxt
+0000c9 b309      	in		R16, ADCL
+0000ca 9508      	ret
+                 
+                 /*------------------------------------------------------------------------------------*/
+                 /*
+                 input:
+                 		none
+                 output:
+                 		btn_wait buttons state
+                 */
+                 PollButtons:
+0000cb dff8      	rcall	GetAdcVal
+0000cc 7f08      	andi	arg0, 0xF8
+                 _pb_btn_up:
+0000cd 3800      	cpi		arg0, BTN_UP_CODE
+0000ce f409      	brne	_pb_btn_down
+0000cf 60e2      	ori		btn_wait, (1 << BTN_UP)
+                 _pb_btn_down:
+0000d0 3c08      	cpi		arg0, BTN_DOWN_CODE
+0000d1 f409      	brne	_pb_btn_left
+0000d2 60e1      	ori		btn_wait, (1 << BTN_DOWN)
+                 _pb_btn_left:
+0000d3 3a08      	cpi		arg0, BTN_LEFT_CODE
+0000d4 f409      	brne	_pb_btn_righ
+0000d5 60e4      	ori		btn_wait, (1 << BTN_LEFT)
+                 _pb_btn_righ:
+0000d6 3c00      	cpi		arg0, BTN_RIGH_CODE
+0000d7 f409      	brne	_pb_ext
+0000d8 60e8      	ori		btn_wait, (1 << BTN_RIGH)
+                 _pb_ext:
+0000d9 9508      	ret
+                 
+                 /*------------------------------------------------------------------------------------*/
+                 /*
+                 input:
+                 		none
+                 output:
+                 		none
+                 */
+                 Delay100us:
+0000da e207      	ldi		R16, 0x27
+0000db bd07      	out		OCR0AH, R16
+0000dc e00f      	ldi		R16, 0x0F
+0000dd bd06      	out		OCR0AL, R16				
+                 
+0000de e002      	ldi		R16, (1 << OCF0A)
+0000df bd0a      	out		TIFR0, R16
+                 
+                 _dl:
+0000e0 b50a      	in		R16, TIFR0
+0000e1 ff01      	sbrs	R16, 1
+0000e2 cffd      	rjmp	_dl
+                 
+0000e3 95fa      	dec		brick_nxt
+0000e4 fdf7      	sbrc	brick_nxt, 7
+0000e5 e0f5      	ldi		brick_nxt, 5
+                 
+0000e6 9508      	ret
+                 
+                 /*------------------------------------------------------------------------------------*/
+                 /*
+                 input:
+                 		none
+                 output:
+                 		SREG.C - 1 full line found and removed, 0 no full lines
+                 */
+                 CheckLine:
+0000e7 94e8      	clt											// T = 0 - from 0 to 7, 1 from 8 to 15
+0000e8 e4a0      	ldi		t_field_addr_l, TFIELD_LOW
+0000e9 e0b0      	ldi		t_field_addr_h, TFIELD_HIGH
+0000ea fdb0      	sbrc	t_field_addr_h, 0
+                 _cl_sek_full_line:
+0000eb 9468      	set
+0000ec ef0f      	ser		t_line
+                 _cl_nxt_colmn_check:
+0000ed 919d      	ld		t_field_byte, X+	
+0000ee 2309      	and		t_line, t_field_byte
+0000ef 34a8      	cpi		t_field_addr_l, TFIELD_LOW + 8
+0000f0 f011      	breq	_cl_tst_line
+0000f1 35a0      	cpi		t_field_addr_l, TFIELD_LOW + 16
+0000f2 f7d1      	brne	_cl_nxt_colmn_check
+                 _cl_tst_line:
+0000f3 3000      	cpi		t_line, 0
+0000f4 f419      	brne	_cl_shft_cycle
+0000f5 f7ae      	brtc	_cl_sek_full_line
+0000f6 9488      	clc
+0000f7 9508      	ret
+                 _cl_shft_cycle:
+0000f8 e4a0      	ldi		t_field_addr_l, TFIELD_LOW	
+0000f9 f40e      	brtc	_cl_nxt_colmn_shft
+0000fa 60a8      	ori		t_field_addr_l, (1 << 3)			// 8_15 field
+                 _cl_nxt_colmn_shft:
+0000fb 919c      	ld		t_field_byte, X
+0000fc 2f19      	mov		t_byte_tmp, t_field_byte
+0000fd 0f11      	lsl		t_byte_tmp
+                 
+0000fe fd07      	sbrc	t_line, 7
+0000ff c026      	rjmp	_cl_80
+000100 fd06      	sbrc	t_line, 6
+000101 c020      	rjmp	_cl_40
+000102 fd05      	sbrc	t_line, 5
+000103 c01a      	rjmp	_cl_20
+000104 fd04      	sbrc	t_line, 4
+000105 c014      	rjmp	_cl_10
+000106 fd03      	sbrc	t_line, 3
+000107 c00e      	rjmp	_cl_08
+000108 fd02      	sbrc	t_line, 2
+000109 c008      	rjmp	_cl_04
+00010a fd01      	sbrc	t_line, 1
+00010b c002      	rjmp	_cl_02
+                 
+                 _cl_01:
+00010c 7f9e      	andi	t_field_byte, 0xFE
+00010d c019      	rjmp	_cl_low_shft
+                 _cl_02:
+00010e 7f9c      	andi	t_field_byte, 0xFC
+00010f 7013      	andi	t_byte_tmp, 0x03
+000110 2b91      	or		t_field_byte, t_byte_tmp	
+000111 c015      	rjmp	_cl_low_shft
+                 _cl_04:
+000112 7f98      	andi	t_field_byte, 0xF8
+000113 7017      	andi	t_byte_tmp, 0x07
+000114 2b91      	or		t_field_byte, t_byte_tmp	
+000115 c011      	rjmp	_cl_low_shft
+                 _cl_08:
+000116 7f90      	andi	t_field_byte, 0xF0
+000117 701f      	andi	t_byte_tmp, 0x0F
+000118 2b91      	or		t_field_byte, t_byte_tmp	
+000119 c00d      	rjmp	_cl_low_shft
+                 _cl_10:
+00011a 7e90      	andi	t_field_byte, 0xE0
+00011b 711f      	andi	t_byte_tmp, 0x1F
+00011c 2b91      	or		t_field_byte, t_byte_tmp	
+00011d c009      	rjmp	_cl_low_shft
+                 _cl_20:
+00011e 7c90      	andi	t_field_byte, 0xC0
+00011f 731f      	andi	t_byte_tmp, 0x3F
+000120 2b91      	or		t_field_byte, t_byte_tmp	
+000121 c005      	rjmp	_cl_low_shft
+                 _cl_40:
+000122 7890      	andi	t_field_byte, 0x80
+000123 771f      	andi	t_byte_tmp, 0x7F
+000124 2b91      	or		t_field_byte, t_byte_tmp	
+000125 c001      	rjmp	_cl_low_shft
+                 _cl_80:
+000126 0f99      	lsl		t_field_byte
+                 _cl_low_shft:
+000127 f43e      	brtc	_cl_nxt_colmn_cont
+                 
+                 	// if 8_15 field was shifted we have to shift 0_7 field too
+000128 7fa7      	andi	t_field_addr_l, ~(1 << 3)
+000129 911c      	ld		t_byte_tmp, X
+00012a fd17      	sbrc	t_byte_tmp, 7
+00012b 6091      	ori		t_field_byte, 01
+00012c 0f11      	lsl		t_byte_tmp
+00012d 931c      	st		X, t_byte_tmp
+00012e 60a8      	ori		t_field_addr_l, (1 << 3)
+                 
+                 _cl_nxt_colmn_cont:
+00012f 939d      	st		X+, t_field_byte
+000130 34a8      	cpi		t_field_addr_l, TFIELD_LOW + 8
+000131 f248      	brlo	_cl_nxt_colmn_shft
+000132 f416      	brtc	_cl_ext_c1
+                 _cl_8_15:
+000133 35a0      	cpi		t_field_addr_l, TFIELD_LOW + 16
+000134 f631      	brne	_cl_nxt_colmn_shft
+                 _cl_ext_c1:
+000135 9408      	sec
+000136 9508      	ret
+                 /*------------------------------------------------------------------------------------*/
+                 /*
+                 input:
+                 		brick_x - from 0 to 15
+                 		brick_y - from 00000001 to 10000000
+                 		brick_type - from 0 to 4
+                 		brick_rot - from 0 to 3
+                 		SREG.T
+                 	    0		just clean brick fields
+                 		1       check fields for brick & set brick in fields
+                 output:
+                 		SREG.C - 1 fields already set , 0 move/rotate done
+                 */
+                 BrickControl:
+000137 e1a6      	ldi		XL,	brick_type_0_0 * 2
+000138 e4b0      	ldi		XH,	0x40
+000139 2f06      	mov		brick_pattern, brick_type
+00013a 0f00      	lsl		brick_pattern
+00013b 0f00      	lsl		brick_pattern						// brick_type * 4
+00013c 0fa0      	add		XL, brick_pattern
+00013d 0fa7      	add		XL, brick_rot						// brick_type * 4 + brick_rot
+00013e 910c      	ld		brick_pattern, X					// brick_pattern[brick_type * 4 + brick_rot]
+00013f e081      	ldi		tmp_patt_pos, 1						// pattern position 00000001
+                 _bc_nxt_seg:
+000140 2f38      	mov		tmp_pattern, tmp_patt_pos
+000141 2330      	and		tmp_pattern, brick_pattern
+000142 f171      	breq	_bc_cont
+                 
+                 	// get x coordinate from pattern position
+000143 e914      	ldi		tmp_x, (4 | 16 | 128) 
+000144 2313      	and		tmp_x, tmp_pattern
+000145 f429      	brne	_bc_x_p_1
+                 
+000146 e219      	ldi		tmp_x, (1 | 8 | 32)	
+000147 2313      	and		tmp_x, tmp_pattern
+000148 f429      	brne	_bc_x_m_1
+                 
+                 _bc_x:										   // (2 | 64) 
+000149 2f14      	mov		tmp_x, brick_x
+00014a c005      	rjmp	_bc_check_x
+                 
+                 _bc_x_p_1:
+00014b 2f14      	mov		tmp_x, brick_x
+00014c 9513      	inc		tmp_x
+00014d c002      	rjmp	_bc_check_x
+                 
+                 _bc_x_m_1:
+00014e 2f14      	mov		tmp_x, brick_x
+00014f 951a      	dec		tmp_x
+                 
+                 _bc_check_x:
+000150 931f      	push	tmp_x
+000151 2714      	eor		tmp_x, brick_x
+000152 7018      	andi	tmp_x, (1 << 3)
+000153 911f      	pop		tmp_x					  
+000154 f551      	brne	_bc_ext_err						 // tmp_x > 7 || tmp_x < 0
+                 
+                 	// get y coordinate from pattern position
+000155 ee20      	ldi		tmp_y, (32 | 64 | 128) 
+000156 2323      	and		tmp_y, tmp_pattern
+000157 f429      	brne	_bc_y_p_1
+                 
+000158 e027      	ldi		tmp_y, (1 | 2 | 4) 
+000159 2323      	and		tmp_y, tmp_pattern
+00015a f451      	brne	_bc_y_m_1
+                 
+                 _bc_y:										   // (8 | 16) 
+00015b 2f25      	mov		tmp_y, brick_y
+00015c c00f      	rjmp	_bc_tst_field_bit
+                 
+                 _bc_y_p_1:
+00015d 2f25      	mov		tmp_y, brick_y
+00015e 0f22      	lsl		tmp_y
+00015f f461      	brne	_bc_tst_field_bit
+000160 fd13      	sbrc	tmp_x, 3
+000161 c01d      	rjmp	_bc_ext_err
+000162 6018      	ori		tmp_x, (1 << 3)			// tmp_x + 8
+000163 6021      	ori		tmp_y, 1
+000164 c007      	rjmp	_bc_tst_field_bit
+                 
+                 _bc_y_m_1:	
+000165 2f25      	mov		tmp_y, brick_y
+000166 9526      	lsr		tmp_y
+000167 f421      	brne	_bc_tst_field_bit
+000168 ff13      	sbrs	tmp_x, 3
+000169 c015      	rjmp	_bc_ext_err
+00016a 7017      	andi	tmp_x, 7			// brick_x - 8
+00016b 6820      	ori		tmp_y, (1 << 7)
+                 
+                 _bc_tst_field_bit: 
+00016c f41e      	brtc	_bc_clear	
+00016d d013      	rcall	GetFieldBit	
+00016e f481      	brne	_bc_ext_err
+00016f f40f      	brid	_bc_cont
+                 _bc_clear:
+000170 d016      	rcall	SetFieldBit
+                 
+                 _bc_cont:
+000171 0f88      	lsl		tmp_patt_pos
+000172 f669      	brne	_bc_nxt_seg
+000173 2f14      	mov		t_field_x, brick_x
+000174 2f25      	mov		t_field_y, brick_y
+000175 f42e      	brtc	_bc_center_bit
+000176 d00a      	rcall	GetFieldBit	
+000177 f439      	brne	_bc_ext_err
+000178 f017      	brie	_bc_center_bit
+000179 9478      	sei
+00017a cfbc      	rjmp	BrickControl
+                 _bc_center_bit:
+00017b d00b      	rcall	SetFieldBit
+00017c 94f8      	cli
+                 _bc_ext_ok:
+00017d 9488      	clc
+00017e 9508      	ret
+                 _bc_ext_err:
+00017f 9408      	sec
+000180 9508      	ret
+                 
+                 /*------------------------------------------------------------------------------------*/
+                 /*
+                 input:	
+                 		t_field_x - from 0 to 15
+                 		t_field_y - from 00000001 to 10000000
+                 output:
+                 		SREG.Z - 1 clear, 0 set
+                 */
+                 GetFieldBit:
+000181 e4a0      	ldi		t_field_addr_l, TFIELD_LOW
+000182 0fa1      	add		t_field_addr_l, t_field_x
+000183 e0b0      	ldi		t_field_addr_h, TFIELD_HIGH
+000184 919c      	ld		t_field_byte, X				
+000185 2392      	and		t_field_byte, t_field_y
+000186 9508      	ret
+                 
+                 /*------------------------------------------------------------------------------------*/
+                 /*
+                 input:	
+                 		t_field_x - from 0 to 15
+                 		t_field_y - from 00000001 to 10000000
+                 		SREG.T - 1 set, 0 clear
+                 output:
+                 		none
+                 */
+                 SetFieldBit:
+000187 e4a0      	ldi		t_field_addr_l, TFIELD_LOW
+000188 2ba1      	or		t_field_addr_l, t_field_x		// instead add instruction, because add interact with C flag (use carefully)
+000189 e0b0      	ldi		t_field_addr_h, TFIELD_HIGH
+00018a 919c      	ld		t_field_byte, X			
+00018b 2b92      	or		t_field_byte, t_field_y
+00018c f01e      	brts	_sfb_set
+00018d 9520      	com		t_field_y
+00018e 2392      	and		t_field_byte, t_field_y
+00018f 9520      	com		t_field_y
+                 _sfb_set:
+000190 939c      	st		X, t_field_byte
+000191 9508      	ret
+                 
+                 /*------------------------------------------------------------------------------------*/
+                 /*
+                 input:	
+                 		none
+                 output:
+                 		none
+                 */
+                 LcdPrintField:
+000192 e3af      	ldi		t_field_addr_l, TFIELD_LOW - 1
+                 _lpf_nxt_byte:
+000193 e0b0      	ldi		t_field_addr_h, TFIELD_HIGH
+000194 e080      	ldi		lcd_addr_cnt, 0
+000195 95a3      	inc		t_field_addr_l
+                 
+                 _lpf_get_byte:
+000196 919c      	ld		t_field_byte, X
+000197 3480      	cpi		lcd_addr_cnt, 64
+000198 f020      	brlo	_lpf_get_bit
+000199 e008      	ldi		arg0, 8
+00019a 0fa0      	add		t_field_addr_l, arg0
+00019b 919c      	ld		t_field_byte, X
+00019c 1ba0      	sub		t_field_addr_l, arg0
+                 _lpf_get_bit:
+00019d e000      	ldi		arg0, 0x00
+00019e 939f      	push	t_field_byte
+00019f 2b08      	or		arg0, lcd_addr_cnt
+0001a0 730f      	andi	arg0, 0x3F	
+0001a1 f019      	breq	_lpf_lcd_val
+                 _lpf_lsr:
+0001a2 9596      	lsr		t_field_byte
+0001a3 5008      	subi	arg0, 8
+0001a4 f7e9      	brne	_lpf_lsr
+                 _lpf_lcd_val:
+0001a5 e000      	ldi		arg0, 0x00
+0001a6 fd90      	sbrc	t_field_byte, 0
+0001a7 ef0f      	ldi		arg0, 0xFF
+0001a8 919f      	pop		t_field_byte
+                 _lpf_nxt_print:
+0001a9 9408      	sec
+0001aa d009      	rcall	SendLcd8Bit
+0001ab 9583      	inc		lcd_addr_cnt
+0001ac e0b7      	ldi		t_field_addr_h, 7
+0001ad 23b8      	and		t_field_addr_h, lcd_addr_cnt	// check if lcd_addr_cnt multiple of 8
+0001ae f7d1      	brne	_lpf_nxt_print
+0001af 3880      	cpi		lcd_addr_cnt, 128				// check if we reached last row
+0001b0 f729      	brne    _lpf_get_byte
+0001b1 34a7      	cpi		t_field_addr_l, TFIELD_LOW + 7  // check if we print all tetris fiels (8 columns)
+0001b2 f701      	brne	_lpf_nxt_byte
+                 _lpf_ext:
+0001b3 9508      	ret
+                 
+                 /*------------------------------------------------------------------------------------*/
+                 /*
+                 input:
+                 		arg0 - data8bit
+                 		SREG.C - 1 data, 0 - cmd
+                 output:
+                 		none
+                 */
+                 SendLcd8Bit:
+0001b4 9810      	cbi		PORTB, LCD_CS		// DISPLAY CS set low
+0001b5 e01a      	ldi		val_i, 10
+                 _slbc_nxt:
+0001b6 9811      	cbi		PORTB, LCD_SCLK		// DISPLAY SCLK set low
+0001b7 9812      	cbi		PORTB, LCD_SDIN
+0001b8 951a      	dec		val_i
+0001b9 f029      	breq	_slbc_ext
+0001ba f408      	brcc	_slbc_bt0
+0001bb 9a12      	sbi		PORTB, LCD_SDIN
+                 _slbc_bt0:
+0001bc 9a11      	sbi		PORTB, LCD_SCLK		// DISPLAY SCLK set high
+0001bd 1f00      	rol 	arg0
+0001be cff7      	rjmp	_slbc_nxt
+                 _slbc_ext:
+0001bf 9a10      	sbi		PORTB, LCD_CS		// DISPLAY CS set high
+0001c0 9508      	ret
+
+
+RESOURCE USE INFORMATION
+------------------------
+
+Notice:
+The register and instruction counts are symbol table hit counts,
+and hence implicitly used resources are not counted, eg, the
+'lpm' instruction without operands implicitly uses r0 and z,
+none of which are counted.
+
+x,y,z are separate entities in the symbol table and are
+counted separately from r26..r31 here.
+
+.dseg memory usage only counts static data declared with .byte
+
+"ATtiny10" register use summary:
+r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 r5 :   0 r6 :   0 r7 :   0 
+r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 r13:   0 r14:   0 r15:   0 
+r16:  69 r17:  40 r18:  17 r19:  11 r20:  19 r21:   9 r22:   2 r23:   8 
+r24:   9 r25:  32 r26:  29 r27:  12 r28:   7 r29:   9 r30:  17 r31:   5 
+x  :  15 y  :   0 z  :   0 
+Registers used: 17 out of 35 (48.6%)
+
+"ATtiny10" instruction use summary:
+.lds.l:   0 .sts.l:   0 adc   :   0 add   :   6 and   :   9 andi  :  24 
+asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 brcc  :   5 
+brcs  :   2 breq  :   9 brge  :   0 brhc  :   0 brhs  :   0 brid  :   1 
+brie  :   1 brlo  :   6 brlt  :   0 brmi  :   0 brne  :  29 brpl  :   0 
+brsh  :   0 brtc  :   7 brts  :   1 brvc  :   0 brvs  :   0 bset  :   0 
+bst   :   0 cbi   :   3 cbr   :   0 clc   :   3 clh   :   0 cli   :   1 
+cln   :   0 clr   :   4 cls   :   0 clt   :   3 clv   :   0 clz   :   0 
+com   :   2 cp    :   0 cpc   :   0 cpi   :  24 cpse  :   0 dec   :   8 
+eor   :   1 icall :   0 ijmp  :   0 in    :   4 inc   :   9 ld    :  10 
+ldd   :   0 ldi   :  57 lds   :   0 lsl   :   8 lsr   :   3 mov   :  12 
+neg   :   0 nop   :   0 or    :   9 ori   :  14 out   :  13 pop   :   2 
+push  :   2 rcall :  25 ret   :  12 reti  :   0 rjmp  :  33 rol   :   1 
+ror   :   0 sbc   :   0 sbci  :   0 sbi   :   5 sbic  :   0 sbis  :   0 
+sbr   :   0 sbrc  :  17 sbrs  :   6 sec   :   3 seh   :   0 sei   :   1 
+sen   :   0 ser   :   3 ses   :   0 set   :   4 sev   :   0 sez   :   0 
+sleep :   0 st    :   5 std   :   0 sts   :   0 sub   :   1 subi  :   1 
+swap  :   0 tst   :   2 wdr   :   0 
+Instructions used: 48 out of 99 (48.5%)
+
+"ATtiny10" memory use summary [bytes]:
+Segment   Begin    End      Code   Data   Used    Size   Use%
+---------------------------------------------------------------
+[.cseg] 0x000000 0x000382    822     76    898    1024  87.7%
+[.dseg] 0x000040 0x000060      0      0      0      32   0.0%
+[.eseg] 0x000000 0x000000      0      0      0       0      -
+
+Assembly complete, 0 errors, 14 warnings

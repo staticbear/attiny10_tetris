@@ -1,0 +1,17 @@
+Removed Pin From Net: NetName=LCD_CS Pin=P3-01
+Removed Pin From Net: NetName=LCD_SCLK Pin=P3-02
+Removed Pin From Net: NetName=GND Pin=P3-03
+Removed Pin From Net: NetName=VCC Pin=P3-04
+Removed Pin From Net: NetName=BTN_ADC Pin=P3-05
+Removed Pin From Net: NetName=NetP1_1 Pin=S5-3
+Added Component: Designator=P3(PIN1)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=BTN_ADC Pin=P3-1
+Added Pin To Net: NetName=NetP1_1 Pin=S5-1
+Added Member To Class: ClassName=tetris Member=Component R5 1K
+Added Member To Class: ClassName=tetris Member=Component S2 black_left
+Added Member To Class: ClassName=tetris Member=Component S3 red_right
+Added Room: Name=tetris
