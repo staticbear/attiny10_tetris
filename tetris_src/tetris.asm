@@ -11,10 +11,10 @@
 .equ	BTN_LEFT	 = 0x02
 .equ	BTN_RIGH	 = 0x03	
 
-.equ	BTN_UP_CODE		 = (1 << 7) | (0 << 6) | (0 << 5) | (0 << 4) | (0 << 3)	// blue
-.equ	BTN_DOWN_CODE	 = (1 << 7) | (1 << 6) | (0 << 5) | (0 << 4) | (1 << 3)	// black
-.equ	BTN_LEFT_CODE	 = (1 << 7) | (0 << 6) | (1 << 5) | (0 << 4) | (1 << 3)	// red
-.equ	BTN_RIGH_CODE	 = (1 << 7) | (1 << 6) | (0 << 5) | (0 << 4) | (0 << 3)	// white
+.equ	BTN_UP_CODE		 = (1 << 7) | (0 << 6) | (0 << 5) | (0 << 4) | (0 << 3)	// blue button
+.equ	BTN_DOWN_CODE	 = (1 << 7) | (1 << 6) | (0 << 5) | (0 << 4) | (1 << 3)	// black button
+.equ	BTN_LEFT_CODE	 = (1 << 7) | (0 << 6) | (1 << 5) | (0 << 4) | (1 << 3)	// red button
+.equ	BTN_RIGH_CODE	 = (1 << 7) | (1 << 6) | (0 << 5) | (0 << 4) | (0 << 3)	// white button
 
 .equ	DELAY_1S		 = 10
 .equ	DELAY_09S		 = 9
@@ -53,8 +53,8 @@
 .def	brick_pattern	= R16
 .def	tmp_x			= R17
 .def	tmp_y			= R18
-.def	tmp_pattern		= R19
-.def	tmp_patt_pos	= R24
+.def	pattern_pos		= R19
+.def	tmp_cmn			= R24
 
 // LcdPrintField local
 .def	lcd_addr_cnt	= R24
@@ -83,6 +83,7 @@ brick_type_2_0:	.db 0x38, 0xC2, 0x1C, 0x43
 brick_type_3_0:	.db 0x98, 0x46, 0x19, 0x62
 brick_type_4_0:	.db 0x70, 0x92, 0x70, 0x92
 brick_type_5_0:	.db 0xC8, 0x2A, 0xC8, 0x2A
+brick_type_6_0:	.db 0x29, 0xE0, 0x29, 0xE0
 
 _init:
 	sbi		ACSR, ACD							// disable comparator
@@ -100,8 +101,8 @@ _init:
 //-----------------init lcd display-----------------
 	ldi		R16, (1 << LCD_SDIN) | (1 << LCD_SCLK) | (1 << LCD_CS)
 	out		DDRB, R16
-	sbi		PORTB, LCD_CS				 // DISPLAY CS set high
-	ldi		XL,	data_lcd_init_codes * 2  // initialize X pointer
+	sbi		PORTB, LCD_CS						// DISPLAY CS set high
+	ldi		XL,	data_lcd_init_codes * 2			// initialize X pointer
 	ldi		XH,	0x40
 _nxt_cfg_byte:
 	ld		arg0, X+
@@ -118,7 +119,7 @@ _nxt_cfg_byte:
 	ldi		R16, (1 << ADEN) | (1 << ADPS2)
 	out		ADCSRA, R16
 
-	ldi		brick_nxt, 5 
+	ldi		brick_nxt, 6
 _press_wt:
 	rcall	ShowIntro
 	rcall	Delay100us
@@ -253,9 +254,6 @@ _btn_none:
 _sel_done:
 	rjmp    _main
 
-		
-
-
 /*------------------------------------------------------------------------------------*/
 /*
 input:
@@ -332,18 +330,28 @@ _pb_btn_up:
 	cpi		arg0, BTN_UP_CODE
 	brne	_pb_btn_down
 	ori		btn_wait, (1 << BTN_UP)
+	rcall	BrickNextCounter
 _pb_btn_down:
 	cpi		arg0, BTN_DOWN_CODE
 	brne	_pb_btn_left
 	ori		btn_wait, (1 << BTN_DOWN)
+	rcall	BrickNextCounter
+	rcall	BrickNextCounter
 _pb_btn_left:
 	cpi		arg0, BTN_LEFT_CODE
 	brne	_pb_btn_righ
 	ori		btn_wait, (1 << BTN_LEFT)
+	rcall	BrickNextCounter
+	rcall	BrickNextCounter
+	rcall	BrickNextCounter
 _pb_btn_righ:
 	cpi		arg0, BTN_RIGH_CODE
 	brne	_pb_ext
 	ori		btn_wait, (1 << BTN_RIGH)
+	rcall	BrickNextCounter
+	rcall	BrickNextCounter
+	rcall	BrickNextCounter
+	rcall	BrickNextCounter
 _pb_ext:
 	ret
 
@@ -368,10 +376,22 @@ _dl:
 	sbrs	R16, 1
 	rjmp	_dl
 
+	rcall	BrickNextCounter
+
+	ret
+
+
+/*------------------------------------------------------------------------------------*/
+/*
+input:
+		none
+output:
+		none
+*/
+BrickNextCounter:
 	dec		brick_nxt
 	sbrc	brick_nxt, 7
-	ldi		brick_nxt, 5
-
+	ldi		brick_nxt, 6
 	ret
 
 /*------------------------------------------------------------------------------------*/
@@ -506,71 +526,111 @@ BrickControl:
 	add		XL, brick_pattern
 	add		XL, brick_rot						// brick_type * 4 + brick_rot
 	ld		brick_pattern, X					// brick_pattern[brick_type * 4 + brick_rot]
-	ldi		tmp_patt_pos, 1						// pattern position 00000001
+	ldi		pattern_pos, 1						// pattern position 00000001
 _bc_nxt_seg:
-	mov		tmp_pattern, tmp_patt_pos
-	and		tmp_pattern, brick_pattern
-	breq	_bc_cont
-
+	mov		tmp_cmn, pattern_pos
+	and		tmp_cmn, brick_pattern
+	brne	_bc_x_if_six
+	rjmp	_bc_cont
+_bc_x_if_six:
+	mov		tmp_x, brick_x
+	cpi		brick_type,  6						// hack for horizontal x4 bar
+	brne	_bc_get_x
+	sbrc	brick_rot, 0						// x only for 0,2 position
+	rjmp	_bc_y_if_six
+	sbrc	pattern_pos, 5
+	subi	tmp_x, 3
+	sbrc	pattern_pos, 3
+	subi	tmp_x, 2
+	sbrc	pattern_pos, 0
+	dec		tmp_x
+	rjmp	_bc_check_x
+_bc_get_x:
 	// get x coordinate from pattern position
-	ldi		tmp_x, (4 | 16 | 128) 
-	and		tmp_x, tmp_pattern
+	ldi		tmp_cmn, (4 | 16 | 128) 
+	and		tmp_cmn, pattern_pos
 	brne	_bc_x_p_1
 
-	ldi		tmp_x, (1 | 8 | 32)	
-	and		tmp_x, tmp_pattern
+	ldi		tmp_cmn, (1 | 8 | 32)	
+	and		tmp_cmn, pattern_pos
 	brne	_bc_x_m_1
 
-_bc_x:										   // (2 | 64) 
-	mov		tmp_x, brick_x
-	rjmp	_bc_check_x
+	rjmp	_bc_check_x							 // (2 | 64) 
 
 _bc_x_p_1:
-	mov		tmp_x, brick_x
 	inc		tmp_x
 	rjmp	_bc_check_x
 
 _bc_x_m_1:
-	mov		tmp_x, brick_x
 	dec		tmp_x
 
 _bc_check_x:
-	push	tmp_x
+	mov		tmp_cmn, tmp_x						// aka push
 	eor		tmp_x, brick_x
 	andi	tmp_x, (1 << 3)
-	pop		tmp_x					  
-	brne	_bc_ext_err						 // tmp_x > 7 || tmp_x < 0
+	mov		tmp_x, tmp_cmn						// aka pop
+	breq	_bc_y_if_six					 
+	rjmp	_bc_ext_err							// tmp_x > 7 || tmp_x < 0
 
-	// get y coordinate from pattern position
-	ldi		tmp_y, (32 | 64 | 128) 
-	and		tmp_y, tmp_pattern
-	brne	_bc_y_p_1
-
-	ldi		tmp_y, (1 | 2 | 4) 
-	and		tmp_y, tmp_pattern
-	brne	_bc_y_m_1
-
-_bc_y:										   // (8 | 16) 
+_bc_y_if_six:
 	mov		tmp_y, brick_y
+	cpi		brick_type,  6						// hack for vertical x4 bar
+	brne	_bc_get_y
+	sbrs	brick_rot, 0						// y only for 1,3 position
+	rjmp	_bc_tst_field_bit
+	sbrc	pattern_pos, 7
+	rjmp	_bc_y_p_3
+	sbrc	pattern_pos, 6
+	rjmp	_bc_y_p_2
+	sbrc	pattern_pos, 5
+	rjmp	_bc_y_p_1
 	rjmp	_bc_tst_field_bit
 
+_bc_get_y:
+	// get y coordinate from pattern position
+	ldi		tmp_cmn, (32 | 64 | 128) 
+	and		tmp_cmn, pattern_pos
+	brne	_bc_y_p_1
+	
+	ldi		tmp_cmn, (1 | 2 | 4) 
+	and		tmp_cmn, pattern_pos
+	brne	_bc_y_m_1
+									 
+	rjmp	_bc_tst_field_bit					// (8 | 16) 
+
+_bc_y_p_3:
+	lsl		tmp_y
+	brne	_bc_y_p_2
+	rcall	_bc_y_p_carry
+_bc_y_p_2:
+	lsl		tmp_y
+	brne	_bc_y_p_1
+	rcall	_bc_y_p_carry
 _bc_y_p_1:
-	mov		tmp_y, brick_y
 	lsl		tmp_y
 	brne	_bc_tst_field_bit
-	sbrc	tmp_x, 3
-	rjmp	_bc_ext_err
-	ori		tmp_x, (1 << 3)			// tmp_x + 8
-	ori		tmp_y, 1
+	rcall	_bc_y_p_carry
 	rjmp	_bc_tst_field_bit
+_bc_y_p_carry:
+	sbrs	tmp_x, 3
+	rjmp	_bc_y_p_carry_k	
+	pop		tmp_x								// just remove ret addr from stack low
+	pop		tmp_x								// just remove ret addr from stack high
+	rjmp	_bc_ext_err
+_bc_y_p_carry_k:
+	ori		tmp_x, (1 << 3)						// tmp_x + 8
+	ori		tmp_y, 1
+	ret
 
 _bc_y_m_1:	
 	mov		tmp_y, brick_y
+	cpi		brick_type,  6						// hack for vertical x4 bar
+	breq	_bc_y_p_3
 	lsr		tmp_y
 	brne	_bc_tst_field_bit
 	sbrs	tmp_x, 3
 	rjmp	_bc_ext_err
-	andi	tmp_x, 7			// brick_x - 8
+	andi	tmp_x, 7							// brick_x - 8
 	ori		tmp_y, (1 << 7)
 
 _bc_tst_field_bit: 
@@ -582,12 +642,14 @@ _bc_clear:
 	rcall	SetFieldBit
 
 _bc_cont:
-	lsl		tmp_patt_pos
-	brne	_bc_nxt_seg
+	lsl		pattern_pos
+	breq	_bc_act
+	rjmp	_bc_nxt_seg
+_bc_act:
 	mov		t_field_x, brick_x
 	mov		t_field_y, brick_y
 	brtc	_bc_center_bit
-	rcall	GetFieldBit	
+	rcall	GetFieldBit							// test center field 
 	brne	_bc_ext_err
 	brie	_bc_center_bit
 	sei
@@ -717,3 +779,4 @@ _slbc_bt0:
 _slbc_ext:
 	sbi		PORTB, LCD_CS		// DISPLAY CS set high
 	ret
+
