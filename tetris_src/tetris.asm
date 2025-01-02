@@ -56,6 +56,13 @@
 .def	pattern_pos		= R19
 .def	tmp_cmn			= R24
 
+// PrintNumber local
+.def	p_dig			= R16
+.def	p_pos			= R17
+.def	p_tmp			= R18
+.def	p_divr			= R19
+
+
 // LcdPrintField local
 .def	lcd_addr_cnt	= R24
 
@@ -77,13 +84,25 @@
 data_lcd_init_codes: .db 0xA8, 0x3F, 0xD3, 0x00, 0x40, 0xA0, 0xC0, 0xDA, 0x12, 0xA4, 0xA6, \
 						 0xD5, 0x80, 0x8D, 0x14, 0xAF, 0x20, 0x00, 0xE3, 0x00
 
-brick_type_0_0:	.db 0x60, 0x90, 0x50, 0xC0
+brick_type_0_0:	.db 0x50, 0x48, 0x0A, 0x12
 brick_type_1_0:	.db 0xE0, 0x94, 0x07, 0x29
 brick_type_2_0:	.db 0x38, 0xC2, 0x1C, 0x43
 brick_type_3_0:	.db 0x98, 0x46, 0x19, 0x62
 brick_type_4_0:	.db 0x70, 0x92, 0x70, 0x92
 brick_type_5_0:	.db 0xC8, 0x2A, 0xC8, 0x2A
 brick_type_6_0:	.db 0x29, 0xE0, 0x29, 0xE0
+
+
+digit_number_0:	.db 0x1F, 0x11, 0x1F, \
+					0x00, 0x1F, 0x01, \
+					0x17, 0x15, 0x1D, \
+					0x1F, 0x15, 0x15, \
+					0x1F, 0x04, 0x07, \
+					0x1D, 0x15, 0x17, \
+					0x1D, 0x15, 0x1F, \
+					0x1F, 0x01, 0x01, \
+					0x1F, 0x15, 0x1F, \
+					0x1F, 0x15, 0x17
 
 _init:
 	sbi		ACSR, ACD							// disable comparator
@@ -119,23 +138,19 @@ _nxt_cfg_byte:
 	ldi		R16, (1 << ADEN) | (1 << ADPS2)
 	out		ADCSRA, R16
 
+_new_game:
+	rcall	LcdClearField
+	rcall	ShowResult
 	ldi		brick_nxt, 6
+	ldi		btn_wait, 0
+
 _press_wt:
-	rcall	ShowIntro
 	rcall	Delay100us
 	rcall	PollButtons
 	tst		btn_wait
 	breq	_press_wt
-
-	ldi		t_field_addr_l, TFIELD_LOW
-	ldi		t_field_addr_h, TFIELD_HIGH
-	ldi		R16, 0x00 
-_nxt_byte_field:
-	st		X+, R16
-	cpi		t_field_addr_l, TFIELD_LOW + 16
-	brne	_nxt_byte_field
+	rcall   LcdClearField
 	ldi		t_result, 0
-	ldi		btn_wait, 0
 	ldi		drop_delay, DELAY_07S
 
 _new_brick:
@@ -146,8 +161,8 @@ _new_brick:
 	mov		brick_type, brick_nxt
 	set
 	rcall	BrickControl
-	brcs	_press_wt
-	
+	brcs	_new_game
+
 _main:
 	clt
 	tst		btn_wait
@@ -168,7 +183,7 @@ _up_rot_0:
 	brcc	_main
 	dec		brick_rot
 	sbrc	brick_rot, 7
-	clr		brick_rot
+	ldi		brick_rot, 3
 	rcall	BrickControl
 	rjmp	_main
 _btn_left:
@@ -238,21 +253,21 @@ _btn_none:
 	rcall	Delay100us
 	dec		drop_delay
 	brne	_sel_done
+
 	ori		btn_wait, (1 << BTN_DOWN)
 
-	ldi		drop_delay, DELAY_07S				// result from 0 to 15: delay 0.7 sec
-	cpi		t_result, 16
-	brlo	_sel_done
-	ldi		drop_delay, DELAY_06S				// result from 16 to 31: delay 0.6 sec
+	ldi		drop_delay, DELAY_06S	
 	cpi		t_result, 32
-	brlo	_sel_done
-	ldi		drop_delay, DELAY_05S				// result from 32 to 63: delay 0.5 sec
+	brlo	_sel_done		
+	ldi		drop_delay, DELAY_05S
 	cpi		t_result, 64
-	brlo	_sel_done
-	ldi		t_result, 64
-	ldi		drop_delay, DELAY_04S				// result from 64 and above: delay 0.4 sec
+	brlo	_sel_done		
+	ldi		drop_delay, DELAY_04S
+
+
 _sel_done:
 	rjmp    _main
+
 
 /*------------------------------------------------------------------------------------*/
 /*
@@ -261,6 +276,98 @@ input:
 output:
 		none
 */
+LcdClearField:
+	ldi		t_field_addr_l, TFIELD_LOW
+	ldi		t_field_addr_h, TFIELD_HIGH
+	ldi		R16, 0x00 
+_nxt_byte_field:
+	st		X+, R16
+	cpi		t_field_addr_l, TFIELD_LOW + 16
+	brne	_nxt_byte_field
+	ret
+
+/*------------------------------------------------------------------------------------*/
+/*
+input:
+		none
+output:
+		none
+*/
+ShowResult:
+	// digit 0
+	clr		p_dig
+	ldi		p_pos, 4
+	rcall	SetPatternNumb
+
+	// digit 1
+	ldi		p_divr, 100
+	rcall	_Div8
+	ldi		p_pos, 0
+	rcall	SetPatternNumb
+
+	// digit 2
+	ldi		p_divr, 10
+	rcall	_Div8
+	ldi		p_pos, 12
+	rcall	SetPatternNumb
+
+	// digit 3
+	mov		p_dig, t_result
+	ldi		p_pos, 8
+	rcall	SetPatternNumb
+
+	rcall	LcdPrintField
+	ret
+
+_Div8:
+	clr		p_dig
+_dv_nxt:	
+	cp		t_result, p_divr
+	brlo	_dv_ext
+	sub  	t_result, p_divr
+	inc		p_dig
+	rjmp	_dv_nxt
+_dv_ext:
+	ret
+
+/*------------------------------------------------------------------------------------*/
+/*
+input:
+		p_dig - digit to print
+		p_pos - right top corner of position form 0 to 15
+output:
+		none
+*/
+SetPatternNumb:
+	ldi		XL,	LOW(digit_number_0 * 2)
+	ldi		XH,	HIGH(digit_number_0 * 2) | 0x40
+	mov		p_tmp, p_dig
+	lsl		p_tmp
+	lsl		p_tmp
+	sub		p_tmp, p_dig			// p_tmp = (p_dig * 4) - p_dig i,e p_tmp = p_dig * 3
+	add		XL, p_tmp
+
+	ldi		ZL, TFIELD_LOW
+	ldi		ZH, TFIELD_HIGH
+	add		ZL, p_pos
+
+	ld		p_tmp, X+
+	st		Z+, p_tmp
+	ld		p_tmp, X+
+	st		Z+, p_tmp
+	ld		p_tmp, X+
+	st		Z+, p_tmp
+
+	ret
+
+/*------------------------------------------------------------------------------------*/
+/*
+input:
+		none
+output:
+		none
+*/
+/*
 ShowIntro:
 	cpi		drop_delay, 7
 	brlo	_si_delay
@@ -299,6 +406,7 @@ logo_arrow:	.db 0x00, 0x00, 0xFC, 0xFC, 0xFC, 0xFC, 0x00, 0x00, \
 
 logo_push:  .db 0x3E, 0x20, 0x3E, 0x00, 0x00, 0x0E, 0x0A, 0x3E, \
 				0x1F, 0x04, 0x1F, 0x00, 0x00, 0x1D, 0x15, 0x17
+*/
 /*------------------------------------------------------------------------------------*/
 /*
 input:
